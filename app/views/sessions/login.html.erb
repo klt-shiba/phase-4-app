@@ -1,4 +1,18 @@
-<%= form_for :sessions, url: '/login' do |f| %>
+<h1>Log in </h1>
+
+<%= form_for @session, url: '/login' do |f| %>
+
+      <% if @user.errors.any? %>
+    <div id="error_explanation">
+        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this article from being saved:</h2>
+        <ul>
+        <% @user.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+        <% end %>
+        </ul>
+    </div>
+    <% end %>
+
   Username: <%= f.text_field :username %>
   Password: <%= f.password_field :password %>
   <%= f.submit "Log in" %>
