@@ -8,8 +8,8 @@ Rails.application.routes.draw do
 
   get '/users/:id', to: 'users#show'
   get '/users', to: 'users#index'
-  get '/users/new', to: 'users#new'
-  post '/users/new', to: 'users#create'
+  get '/signup', to: 'users#new'
+  post '/signup', to: 'users#create'
   patch '/users/:id', to: 'users#update'
   get '/users/:id/edit', to: 'users#edit'
 
