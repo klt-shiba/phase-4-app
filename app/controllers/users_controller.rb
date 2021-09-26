@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(params[:id])
-    @jobs = @user.show_jobs
+    @jobs = @user.jobs
   end
 
   def index

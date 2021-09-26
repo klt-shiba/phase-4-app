@@ -18,9 +18,9 @@
     <br>
   <div>Price: <%= f.text_field :price %></div>
       <br>
-    <div>Day: <%= f.select :category, options_for_select([["Select One", ""], "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]), :class => 'genForm_dropBox' %></div>
+    <div>Day: <%= f.select :day, options_for_select([["Select One", ""], "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]), :class => 'genForm_dropBox' %></div>
       <br>
-   <div>Time: <%= f.select :category, options_for_select([["Select One", ""], "Morning", "Afternoon", "Evening"]), :class => 'genForm_dropBox' %></div>
+   <div>Time: <%= f.select :time, options_for_select([["Select One", ""], "Morning", "Afternoon", "Evening"]), :class => 'genForm_dropBox' %></div>
     <br>
   <%= f.submit "Post job" %>
 <% end %>

@@ -1,1 +1,9 @@
+<p> <%=@job.category%> </p>
 <h1><%=@job.title%></h1>
+<p> <%=@job.description%> </p>
+<p> <%=@job.day%> - <%=@job.time%> </p>
+<hr>
+<h2>$<%=@job.price%></h2>
+<br>
+<%=link_to "Update job", edit_user_job_path(@job.user_id, @job.id)%>
+<%=link_to "Back to profile", user_path(@job)%>

@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   post '/create', to: 'jobs#create'
   patch '/jobs/:id', to: 'jobs#update'
   get '/jobs/:id/edit', to: 'jobs#edit'
+  get 'jobs/delete', to: 'jobs#destroy'
+  post 'jobs/delete', to: 'jobs#destroy'
 
   get '/users/:id', to: 'users#show'
   get '/users', to: 'users#index'

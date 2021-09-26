@@ -1,7 +1,7 @@
-<ul>
+<ol>
   <% @jobs.each do | job |%>
     <li>
-      <%=job.title%> - <%=job.price%>
+      <%=link_to job.title, user_job_path(job.user_id, job.id)%> - <%=job.price%>
     </li>
   <%end%>
-<ul>
+<ol>
