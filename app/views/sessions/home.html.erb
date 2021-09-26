@@ -2,3 +2,6 @@
 
 <nav><%=link_to "Profile", user_path(@user)%></nav>
 <%=button_to "Logout", logout_path%>
+
+<hr>
+<%= render partial: 'jobs/jobs', locals: {job: @job} %>

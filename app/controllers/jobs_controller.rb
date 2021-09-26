@@ -9,10 +9,7 @@ class JobsController < ApplicationController
 
   def show
     @job = Job.find_by(params[:id])
-
-    puts "&&&&&&&&&&&&"
-    puts @job.user_id
-    puts @job.id
+    @user = User.find_by(params[:id])
   end
 
   def new
@@ -21,7 +18,6 @@ class JobsController < ApplicationController
 
   def create
     @job = Job.new(job_params)
-
     @user = User.find_by(params[:id])
     @job.user_id = @user.id
 
