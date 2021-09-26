@@ -1,23 +1,23 @@
-<h1>Sign up</h1>
-
-<%= form_for :user, url: '/signup' do |f| %>
+<%= form_for user do |f| %>
 
   <div><b><%=@message%></b></div>
-    <% if @user.errors.any? %>
+    <% if user.errors.any? %>
     <div id="error_explanation">
       <ul>
-        <% @user.errors.each do |error| %>
+        <% user.errors.each do |error| %>
             <li><%= error.full_message %></li>
         <% end %>
         </ul>
     </div>
     <% end %>
-
+  <br>
   <div>Username: <%= f.text_field :username %></div>
+    <br>
   <div>Email: <%= f.text_field :email %></div>
+    <br>
   <div>Password: <%= f.password_field :password %></div>
+    <br>
   <div>Password Confirmation: <%= f.password_field :password_confirmation %></div>
-  <%= f.submit "Sign up" %>
+    <br>
+  <%= f.submit "Update" %>
 <% end %>
-
-<%=link_to "Sign in", login_path%>

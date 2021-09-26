@@ -4,16 +4,18 @@ class SessionsController < ApplicationController
     @user = User.find_by_id(session[:user_id])
   end
 
-  def login; end
+  def login
+    if session[:user_id]
+      redirect_to root_path
+    end
+  end
 
   def create
-    @user = User.find_by(username: params[:username])
-
-    if !!@user && @user.authenticate(params[:password])
+    @user = User.find_by(username: user_params[:username])
+    if @user && @user.authenticate(user_params[:password])
       session[:user_id] = @user.id
-      redirect_to user_path
+      redirect_to root_path
     else
-      puts '====================================='
       @message = 'Your email address or password is incorrect. Please try again.'
       render :login, notice: [@message, @user]
     end
@@ -24,9 +26,8 @@ class SessionsController < ApplicationController
     redirect_to login_path
   end
 
-  private
-
-  def require_login
-    return head(:forbidden) unless session.include? :user_id
+  def user_params
+    params.require(:user).permit(:username, :password)
   end
+
 end

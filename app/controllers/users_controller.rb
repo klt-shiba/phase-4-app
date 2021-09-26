@@ -15,11 +15,25 @@ class UsersController < ApplicationController
   end
 
   def show
-    @name = User.find_by(params[:id])
+    @user = User.find_by(params[:id])
   end
 
   def index
     @users = User.all
+  end
+
+  def edit
+    @user = User.find_by(params[:id])
+  end
+
+  def update
+    @user = User.find_by(params[:id])
+    if @user.update(user_params)
+      redirect_to user_path(@user)
+    else
+      @message = 'Your details are incorrect. Please try again.'
+      render :edit, notice: @message
+    end
   end
 
   private

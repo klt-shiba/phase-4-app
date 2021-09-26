@@ -1,1 +1,26 @@
-<%= "Hi, #{@name}"%>
+<h1><%=@user.username.pluralize.capitalize%> profile</h1>
+<%=link_to "Update profile", edit_user_path(@user)%>
+<hr>
+<li>
+    <div>
+        <h3>Username</h3>
+        <div><h4><%=@user.username.capitalize%></h4><div>
+    </div>
+</li>
+<hr>
+<li>
+    <div>
+        <h3>Emai</h3>
+        <div><h4><%=@user.email%></h4><div>
+    </div>
+</li>
+<hr>
+<li>
+    <div>
+        <h3>Password</h3>
+        <div><h4>********</h4><div>
+    </div>
+</li>
+<hr>
+
+<%=link_to "My Services", root_path%>
