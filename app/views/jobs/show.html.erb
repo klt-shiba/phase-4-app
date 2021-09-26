@@ -7,7 +7,9 @@
 <br>
 <% if current_user.id == @job.user_id %>
   <%=link_to "Update job", edit_user_job_path(@job.user_id, @job.id)%>
+  <%=link_to "Back to profile", user_path(@job)%>
 <%else%>
   <%=link_to "Bid on job", job_path(@job)%>
+  <%=link_to "View poster", user_path(@job)%>
 <%end%>
-<%=link_to "Back to profile", user_path(@job)%>
+

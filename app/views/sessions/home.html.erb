@@ -1,6 +1,6 @@
 <h1>Welcome <%=@user.username.capitalize%>!</h1>
 
-<nav><%=link_to "Profile", user_path(@user)%></nav>
+<nav><%=link_to "Profile", user_path(@user.id)%></nav>
 <%=button_to "Logout", logout_path%>
 
 <hr>

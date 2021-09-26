@@ -1,28 +1,40 @@
 <h1><%=@user.username.pluralize.capitalize%> profile</h1>
-<%=link_to "Update profile", edit_user_path(@user)%>
-<%=link_to "Create job", new_user_job_path(@user)%>
-<hr>
-<li>
+<% if current_user.id == @user.id %>
+  <%=link_to "Update profile", edit_user_path(@user)%>
+  <%=link_to "Create job", new_user_job_path(@user)%>
+  <hr>
+  <li>
     <div>
-        <h3>Username</h3>
-        <div><h4><%=@user.username.capitalize%></h4><div>
+      <h3>Username</h3>
     </div>
-</li>
-<hr>
-<li>
     <div>
-        <h3>Emai</h3>
-        <div><h4><%=@user.email%></h4><div>
+      <h4><%=@user.username.capitalize%></h4>
     </div>
-</li>
-<hr>
-<li>
+  </li>
+  <hr>
+  <li>
     <div>
-        <h3>Password</h3>
-        <div><h4>********</h4><div>
+      <h3>Email</h3>
     </div>
-</li>
-<hr>
-
-<%= render partial: 'jobs/jobs', locals: {jobs: @jobs} %>
-<%=link_to "My Services", root_path%>
+    <div>
+      <h4><%=@user.email%></h4>
+    </div>
+  </li>
+  <hr>
+  <li>
+    <div>
+      <h3>Password</h3>
+    </div>
+    <div>
+      <h4>********</h4>
+      <div>
+      </div>
+    </li>
+    <hr>
+  <%else%>
+  <%end%>
+  <div>
+  <%= render partial: 'jobs/jobs', locals: {jobs: @jobs} %>
+  </div>
+<br>
+  <%=link_to "My Services", root_path%>

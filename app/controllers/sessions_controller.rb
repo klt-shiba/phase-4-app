@@ -3,6 +3,8 @@ class SessionsController < ApplicationController
     render :login unless session.include? :user_id
     @user = User.find_by_id(session[:user_id])
     @jobs = Job.all
+    puts "********************"
+    puts @user.username
   end
 
   def login
