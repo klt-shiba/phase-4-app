@@ -1,0 +1,26 @@
+<%= form_for job do |f| %>
+  <div><b><%=@message%></b></div>
+    <% if job.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% job.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+        <% end %>
+        </ul>
+    </div>
+    <% end %>
+  <br>
+  <div>Title: <%= f.text_field :title %></div>
+    <br>
+  <div>Category: <%= f.select :category, options_for_select([["Select One", ""], "Cell", "Work", "Office", "Home", "Other"]), :class => 'genForm_dropBox' %></div>
+    <br>
+  <div>Description: <%= f.text_area :description %></div>
+    <br>
+  <div>Price: <%= f.text_field :price %></div>
+      <br>
+    <div>Day: <%= f.select :category, options_for_select([["Select One", ""], "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]), :class => 'genForm_dropBox' %></div>
+      <br>
+   <div>Time: <%= f.select :category, options_for_select([["Select One", ""], "Morning", "Afternoon", "Evening"]), :class => 'genForm_dropBox' %></div>
+    <br>
+  <%= f.submit "Post job" %>
+<% end %>

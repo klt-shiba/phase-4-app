@@ -1,5 +1,6 @@
 <h1><%=@user.username.pluralize.capitalize%> profile</h1>
 <%=link_to "Update profile", edit_user_path(@user)%>
+<%=link_to "Create job", new_user_job_path(@user)%>
 <hr>
 <li>
     <div>
@@ -23,4 +24,5 @@
 </li>
 <hr>
 
+<%= render partial: 'jobs/jobs', locals: {jobs: @jobs} %>
 <%=link_to "My Services", root_path%>
