@@ -5,7 +5,6 @@ class BidsController < ApplicationController
 
   def create
     @bid = Bid.new(job_params)
-    @bid.save
     @job = Job.find_by(id: params[:job_id])
     @user = User.find_by_id(session[:user_id])
     @bidder = Bidder.create_bidder(@user)
@@ -20,8 +19,7 @@ class BidsController < ApplicationController
     puts @bid.comment
     puts @bid
 
-    if @bid
-        @bid
+    if @bid.save
         redirect_to user_job_path(@user.id, @job.id)
     else
         puts "Borked"
@@ -39,6 +37,6 @@ class BidsController < ApplicationController
   private
 
   def job_params
-    params.require(:bid).permit(:bid_amount, :comment)
+    params.require(:bid).permit(:bid_amount, :comment, :bidder_id, :jobs_id)
   end
 end
