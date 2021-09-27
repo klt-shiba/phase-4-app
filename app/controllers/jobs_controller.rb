@@ -16,8 +16,12 @@ class JobsController < ApplicationController
   end
 
   def create
+
+
     @job = Job.new(job_params)
     @user = User.find_by(params[:id])
+
+    
     @job.user_id = @user.id
 
     if @job.save
