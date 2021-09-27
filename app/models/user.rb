@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
 
-  has_many :jobs
-
+  has_many :bidders
+  has_many :posters
+  
   
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i.freeze
 

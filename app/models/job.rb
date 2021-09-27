@@ -1,5 +1,9 @@
 class Job < ActiveRecord::Base
-    belongs_to :user
+    
+    belongs_to :poster
+
+    has_many :bids
+    has_many :bidders, through: :bids
 
     validates :title, presence: true
     validates :description, presence: true
