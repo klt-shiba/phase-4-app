@@ -5,11 +5,12 @@
 <hr>
 <h2>$<%=@job.price%></h2>
 <br>
-<% if current_user.id == @job.user_id %>
-  <%=link_to "Update job", edit_user_job_path(@job.user_id, @job.id)%>
-  <%=link_to "Back to profile", user_path(@job)%>
+<% if current_user.id == @job.poster_id %>
+  <%=link_to "Update job", edit_user_job_path(@job.poster_id, @job.id)%>
+  <%=link_to "Back to profile", user_path(@job.poster_id)%>
 <%else%>
-  <%=link_to "Bid on job", job_path(@job)%>
+  <%=link_to "Bid on job", new_job_bid_path(@job.id)%>
   <%=link_to "View poster", user_path(@job)%>
 <%end%>
 
+<%= render partial: 'bids/bids', locals: {bids: @bids} %>

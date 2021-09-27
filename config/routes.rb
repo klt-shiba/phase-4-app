@@ -5,17 +5,28 @@ Rails.application.routes.draw do
   resources :users do
     resources :jobs
   end
-
+  resources :jobs do
+    resources :bids
+  end
   resources :jobs, :sessions
 
   get '/jobs/:id', to: 'jobs#show'
   get '/jobs', to: 'jobs#index'
-  get '/create', to: 'jobs#new'
-  post '/create', to: 'jobs#create'
+  get '/jobs/new', to: 'jobs#new'
+  post '/jobs/new', to: 'jobs#create'
   patch '/jobs/:id', to: 'jobs#update'
   get '/jobs/:id/edit', to: 'jobs#edit'
   get 'jobs/delete', to: 'jobs#destroy'
   post 'jobs/delete', to: 'jobs#destroy'
+
+  get '/bids/:id', to: 'bids#show'
+  get '/bids', to: 'bids#index'
+  get '/bids/new', to: 'bids#new'
+  post '/bids/new', to: 'bids#create'
+  patch '/bids/:id', to: 'bids#update'
+  get '/bids/:id/edit', to: 'bids#edit'
+  get 'bids/delete', to: 'bids#destroy'
+  post 'bids/delete', to: 'bids#destroy'
 
   get '/users/:id', to: 'users#show'
   get '/users', to: 'users#index'

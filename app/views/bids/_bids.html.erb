@@ -1,0 +1,7 @@
+<ol>
+  <% @bids.each do | bid |%>
+    <li>
+      <div><%=link_to bid.bid_amount, user_path(bid.bidder_id)%> </div>
+    </li>
+  <%end%>
+  <ol>

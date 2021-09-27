@@ -1,13 +1,24 @@
 class Poster < ActiveRecord::Base
+  belongs_to :user
+  has_many :jobs
 
-    belongs_to :user
-    has_many :jobs
+  ##
+  ## Check if the user is poster?
+  ## if they are: Return the poster
+  ##
+  ## if they are not: Create a new poster and assign the user_id
+  ##
+  def self.create_poster(user)
+    if Poster.exists?(user_id: user.id)
+      puts "I'm an existing user"
+      puts user.username  
+      user
+    else
+      puts "I'm a new user"
+      new_poster = Poster.new
 
-
-    def create_poster(id)
-        
-        if Poster.all.map(&:user_id).include? id
-         
+      new_poster.user_id = user.id
+      new_poster.save
     end
-
+  end
 end

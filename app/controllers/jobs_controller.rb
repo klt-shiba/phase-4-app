@@ -8,24 +8,28 @@ class JobsController < ApplicationController
   end
 
   def show
-    @job = Job.find_by(params[:id])
+    @job = Job.find_by(id: params[:id])
+    @bids = Bid.all
   end
 
   def new
     @job = Job.new
+    @user = User.find_by(id: params[:user_id])
+
   end
 
   def create
-
-
     @job = Job.new(job_params)
-    @user = User.find_by(params[:id])
+    @user = User.find_by(id: params[:user_id])
 
-    
-    @job.user_id = @user.id
+    puts "jobs controller create"
+    puts @user.username
+    @poster = Poster.create_poster(@user)
+
+    @job.poster_id = @poster.id
 
     if @job.save
-      redirect_to user_job_path(@job.user_id, @job.id), notice: @user
+      redirect_to user_job_path(@job.poster_id, @job.id)
     else
       @message = 'Your details are incorrect. Please try again.'
       render :new, notice: @message
@@ -39,7 +43,7 @@ class JobsController < ApplicationController
   def update
     @job = Job.find_by(params[:id])
     if @job.update(job_params)
-      redirect_to user_job_path(@job.user_id, @job.id)
+      redirect_to user_job_path(@job.poster_id, @job.id)
     else
       @message = 'Your details are incorrect. Please try again.'
       render :edit, notice: @message
@@ -55,6 +59,6 @@ class JobsController < ApplicationController
   private
 
   def job_params
-    params.require(:job).permit(:title, :category, :description, :price, :day, :time)
+    params.require(:job).permit(:title, :category, :location, :description, :price, :day, :time)
   end
 end
