@@ -1,4 +1,4 @@
-<%= form_for user do |f| %>
+<%= bootstrap_form_for user do |f| %>
   <div><b><%=@message%></b></div>
   <% if user.errors.any? %>
     <div id="error_explanation">
@@ -10,13 +10,13 @@
     </div>
   <% end %>
   <br>
-  <div>Username: <%= f.text_field :username %></div>
+  <div><%= f.text_field :username %></div>
   <br>
-  <div>Email: <%= f.text_field :email %></div>
+  <div><%= f.text_field :email %></div>
   <br>
-  <div>Password: <%= f.password_field :password %></div>
+  <div><%= f.password_field :password %></div>
   <br>
-  <div>Password Confirmation: <%= f.password_field :password_confirmation %></div>
+  <div><%= f.password_field :password_confirmation %></div>
   <br>
   <%= f.submit "Update" %>
 <% end %>
