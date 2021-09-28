@@ -9,7 +9,7 @@ class JobsController < ApplicationController
 
   def show
     @job = Job.find_by(id: params[:id])
-    @bids = Bid.all
+    @bids = Bid.show_related_bids_only(@job)
   end
 
   def new

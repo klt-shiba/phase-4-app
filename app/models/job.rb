@@ -12,4 +12,8 @@ class Job < ActiveRecord::Base
     validates :time, presence: true
     validates :category, presence: true
 
+
+
+    
+
 end

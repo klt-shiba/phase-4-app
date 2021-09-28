@@ -10,7 +10,8 @@
   <%=link_to "Back to profile", user_path(@job.poster_id)%>
 <%else%>
   <%=link_to "Bid on job", new_job_bid_path(@job.id)%>
-  <%=link_to "View poster", user_path(@job)%>
+  <%=link_to "View poster", user_path(@job.poster_id)%>
+  <%=link_to "View dashboard", root_path%>
 <%end%>
-
+<h2>Bids</h2>
 <%= render partial: 'bids/bids', locals: {bids: @bids} %>

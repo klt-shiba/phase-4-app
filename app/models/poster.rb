@@ -21,4 +21,8 @@ class Poster < ActiveRecord::Base
       new_poster.save
     end
   end
+
+  def self.what_is_my_name(user)
+  end
+
 end

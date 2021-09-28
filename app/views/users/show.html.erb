@@ -33,8 +33,13 @@
     <hr>
   <%else%>
   <%end%>
-  <div>
-  <%= render partial: 'jobs/jobs', locals: {jobs: @jobs} %>
+  <h2>My jobs</h2>
+    <div>
+  <% if @poster%>
+      <%= render partial: 'jobs/jobs', locals: {jobs: @poster.jobs}%>
+  <% else%>
+      <%=link_to "Create job", new_user_job_path(@user)%>
+    <%end%>
   </div>
-<br>
+  <br>
   <%=link_to "My Services", root_path%>
