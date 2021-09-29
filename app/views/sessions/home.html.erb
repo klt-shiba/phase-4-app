@@ -1,8 +1,6 @@
 <h1>Welcome <%=@user.username.capitalize%>!</h1>
 
 <nav><%=link_to "Profile", user_path(@user.id)%></nav>
-
-
 <nav><%=link_to "Post a Job", new_user_job_path(@user.id)%></nav>
 <nav><%=link_to "Bid on Job", user_path(@user.id)%></nav>
 
@@ -11,3 +9,5 @@
 
 <hr>
 <%= render partial: 'jobs/jobs', locals: {jobs: @jobs} %>
+<br>
+<nav><%=link_to "View all jobs", jobs_path%></nav>

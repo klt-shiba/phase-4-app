@@ -23,6 +23,7 @@ class Poster < ActiveRecord::Base
   end
 
   def self.what_is_my_name(user)
+    @name = Poster.find_by()
   end
 
 end

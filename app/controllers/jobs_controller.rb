@@ -2,7 +2,10 @@ class JobsController < ApplicationController
   def index
     @jobs = if params[:user_id]
               User.find(params[:user_id]).jobs
+            elsif !params[:category].blank?
+              Job.where(category: params[:category])
             else
+              ## No filter applied
               Job.all
             end
   end

@@ -1,0 +1,11 @@
+<h1>All jobs</h1>
+
+<div>
+  <h3>Filter jobs:</h3>
+  <%= form_tag("/jobs", method: "get") do %>
+    <%= select_tag "category", options_from_collection_for_select(@jobs, "id", "category"), include_blank: true%>
+      <%= puts @jobs%>
+    <%= submit_tag "Filter" %>
+  <% end %>
+</div>
+<%= render partial: 'jobs', locals: {jobs: @jobs} %>

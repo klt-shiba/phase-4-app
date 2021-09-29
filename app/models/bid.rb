@@ -10,4 +10,9 @@ class Bid < ActiveRecord::Base
   def self.show_related_bids_only(job)
     @bids = Bid.all.select { |bid| bid.job_id == job.id }
   end
+
+
+  def self.show_results
+    Bid.all
+  end
 end
