@@ -2,11 +2,9 @@ class JobsController < ApplicationController
   def index
     @jobs = if params[:user_id]
               User.find(params[:user_id]).jobs
-            elsif !params[:category].blank?
-              Job.where(category: params[:category])
             else
               ## No filter applied
-              Job.all
+              Job.is_category('Cell')
             end
   end
 
@@ -18,14 +16,13 @@ class JobsController < ApplicationController
   def new
     @job = Job.new
     @user = User.find_by(id: params[:user_id])
-
   end
 
   def create
     @job = Job.new(job_params)
     @user = User.find_by(id: params[:user_id])
 
-    puts "jobs controller create"
+    puts 'jobs controller create'
     puts @user.username
     @poster = Poster.create_poster(@user)
 
@@ -39,8 +36,15 @@ class JobsController < ApplicationController
     end
   end
 
+  def popular
+    ## Bid is an array of values
+    @bids = Bid.most_popular
+    @jobs = Job.most_popular(@bids)
+    puts @jobs
+  end
+
   def edit
-    @job = Job.find_by(params[:id])
+    @job = Job.find_by(id: params[:id])
   end
 
   def update

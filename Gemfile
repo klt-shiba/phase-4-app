@@ -57,3 +57,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'htmlbeautifier'
 gem 'simple_form'
 gem "bootstrap_form", "~> 4.0"
+gem "omniauth"
+gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'

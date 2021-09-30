@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   resources :jobs do
     resources :bids
   end
+
+  get 'most_popular', to: 'jobs#popular'
+
   resources :jobs, :sessions
 
   get '/jobs/:id', to: 'jobs#show'

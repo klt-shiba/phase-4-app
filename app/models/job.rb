@@ -1,26 +1,23 @@
 class Job < ActiveRecord::Base
-    
-    belongs_to :poster
+  belongs_to :poster
 
-    has_many :bids
-    has_many :bidders, through: :bids
+  has_many :bids
+  has_many :bidders, through: :bids
 
-    validates :title, presence: true
-    validates :description, presence: true
-    validates :price, presence: true
-    validates :day, presence: true
-    validates :time, presence: true
-    validates :category, presence: true
+  validates :title, presence: true
+  validates :description, presence: true
+  validates :price, presence: true
+  validates :day, presence: true
+  validates :time, presence: true
+  validates :category, presence: true
 
-
-
-    ## 
-    ## Method to only show posts from the same category
-    ## Category parameter is passed into method and used to select all Jobs matching that category
-    ##
-    def self.filter_by_category(category)
-        @jobs = Job.all.select { |job| job.category == category}
+  def self.most_popular(array)
+    results = []
+    array.select do |bid|
+      Job.all.select do |job|
+        results << job if job.id == bid.job_id
+      end
     end
-
-
+    results
+  end
 end
