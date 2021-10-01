@@ -24,7 +24,6 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'omniauth'
 gem "omniauth-google-oauth2"
 gem 'omniauth-rails_csrf_protection'
-  gem 'pry'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -61,4 +60,3 @@ end
 gem 'bootstrap_form', '~> 4.0'
 gem 'htmlbeautifier'
 gem 'simple_form'
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

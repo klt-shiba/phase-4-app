@@ -12,20 +12,11 @@ class BidsController < ApplicationController
     @bid.job_id = @job.id
     @bid.bidder_id = @bidder.id
 
-    
-    puts "---------------"
-    puts @bid.bid_amount
-    puts @bid.job_id
-    puts @bid.bidder_id
-    puts @bid.comment
-
-    puts @bid.save
-
     if @bid.save
       redirect_to user_job_path(@user.id, @job.id)
     else
       puts 'Borked'
-      flash[:message] = @bid.errors.full_messages.join(' ')
+      flash[:message] = @bid.errors.full_messages
       render :new
     end
   end

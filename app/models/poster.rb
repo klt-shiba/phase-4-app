@@ -11,7 +11,7 @@ class Poster < ActiveRecord::Base
   def self.create_poster(user)
     if Poster.exists?(user_id: user.id)
       puts "I'm an existing user"
-      puts user.username  
+      puts user.username
       user
     else
       puts "I'm a new user"
