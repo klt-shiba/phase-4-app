@@ -34,10 +34,10 @@
   <%else%>
   <%end%>
   <h2>My jobs</h2>
-    <div>
-  <% if @poster%>
+  <div>
+    <% if @poster%>
       <%= render partial: 'jobs/jobs', locals: {jobs: @poster.jobs}%>
-  <% else%>
+    <% else%>
       <%=link_to "Create job", new_user_job_path(@user)%>
     <%end%>
   </div>

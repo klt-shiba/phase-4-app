@@ -1,9 +1,7 @@
 class User < ActiveRecord::Base
-
   has_many :bidders
   has_many :posters
-  
-  
+
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i.freeze
 
   validates :username, presence: true, uniqueness: true
@@ -13,6 +11,14 @@ class User < ActiveRecord::Base
   has_secure_password
 
   def show_jobs
-    self.jobs
+    jobs
+  end
+
+  def self.create_from_omniauth(auth)
+    User.find_or_create_by(uid: auth['uid'], provider: auth['provider']) do |u|
+      u.username = auth['info']['first_name']
+      u.email = auth['info']['email']
+      u.password = SecureRandom.hex(24)
+    end
   end
 end

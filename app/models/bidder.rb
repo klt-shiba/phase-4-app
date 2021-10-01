@@ -4,7 +4,7 @@ class Bidder < ActiveRecord::Base
   has_many :bids
   has_many :jobs, through: :bids
 
-  def self.create_bidder(user)
+  def self.create_or_find_bidder(user)
     if Bidder.exists?(user_id: user.id)
       puts "I'm an existing bidder"
       puts user.username

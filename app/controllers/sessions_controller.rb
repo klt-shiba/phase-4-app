@@ -3,14 +3,12 @@ class SessionsController < ApplicationController
     render :login unless session.include? :user_id
     @user = User.find_by_id(session[:user_id])
     @jobs = Job.all
-    puts "********************"
-    puts @user.username
+    puts '********************'
+    puts @user
   end
 
   def login
-    if session[:user_id]
-      redirect_to root_path
-    end
+    redirect_to root_path if session[:user_id]
   end
 
   def create
@@ -32,13 +30,28 @@ class SessionsController < ApplicationController
   ## non restful custom route
   ## log users with omniauth
   def omniauth
-    byebug
+    ## Argument to find or create
+    ## Class method to create user from omniauth.
+    ## Pass in auth argument
+    @user = User.create_from_omniauth(auth)
+    if @user.valid?
+      session[:user_id] = @user.id
+      redirect_to root_path
+    else
+      flash[:message] = @user.errors.full_messages
+      redirect_to login_path
+    end
   end
 
-
   private
+
+  def auth
+    ## Print out clean hash of user  auth
+    ## pp request.env['omniauth.auth']
+    request.env['omniauth.auth']
+  end
+
   def user_params
     params.require(:user).permit(:username, :password)
   end
-
 end

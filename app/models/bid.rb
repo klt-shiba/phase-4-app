@@ -3,9 +3,9 @@ class Bid < ActiveRecord::Base
   belongs_to :job
 
   validates :bid_amount, presence: true
+  validates :comment, presence: true
 
   scope :most_popular, -> { select('job_id, count(job_id) as count').group(:job_id).order('count desc').limit(10) }
-
 
   ##
   ## Find and show bids related to the job
