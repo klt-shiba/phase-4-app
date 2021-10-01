@@ -29,6 +29,14 @@ class SessionsController < ApplicationController
     redirect_to login_path
   end
 
+  ## non restful custom route
+  ## log users with omniauth
+  def omniauth
+    byebug
+  end
+
+
+  private
   def user_params
     params.require(:user).permit(:username, :password)
   end

@@ -1,11 +1,11 @@
 <h1>Log in </h1>
-
 <%= bootstrap_form_for :user, url: '/login' do |f| %>
   <div><b><%=@message%></b></div>
   <br>
   Username: <%= f.text_field :username %>
   Password: <%= f.password_field :password %>
   <%= f.submit "Log in" %>
-<% end %> 
-  <br>
+<% end %>
+<br>
+<%=button_to "Login with Google", '/auth/google_oauth2'%>
 <%=link_to "Sign up", signup_path%>
