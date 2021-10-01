@@ -1,3 +1,4 @@
+<%=link_to "View Job", user_job_path(@job.poster_id, @job.id)%>
 <h1>Bid on job</h1>
-<%=flash[:message]%>
 <%= render partial: 'form', locals: {bid: @bid} %>
+

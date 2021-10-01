@@ -2,6 +2,7 @@
   <% @bids.each do | bid |%>
     <li>
       <div><%=link_to bid.bid_amount, user_path(bid.bidder_id)%> - <%=bid.comment%> </div>
-    </li>
-  <%end%>
-  <ol>
+      <div><%=link_to job_bidder(bid), user_path(bid.bidder_id)%>
+      </li>
+    <%end%>
+    <ol>
