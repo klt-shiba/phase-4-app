@@ -40,6 +40,10 @@ class JobsController < ApplicationController
     @jobs = Job.most_popular
   end
 
+  def category
+    @jobs = Job.is_category(params[:category])
+  end
+
   def edit
     @job = Job.find_by(id: params[:id])
   end

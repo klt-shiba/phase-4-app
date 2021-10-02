@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :jobs do
     collection do
       get 'most_popular', to: 'jobs#popular'
+      get ':category', to: 'jobs#category', as: 'category'
     end
   end
   resources :users do

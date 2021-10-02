@@ -13,6 +13,10 @@
   <% end %>
   <br>
   <span><%=link_to "Clear search", jobs_path%></span> | 
-  <span><%=link_to "Most popular", most_popular_jobs_path%></span>
+  <span><%=link_to "Most popular", most_popular_jobs_path%></span> | 
+  <span><%=link_to "Wash & groom", category_jobs_path("Wash & groom")%></span> | 
+  <span><%=link_to "Walk & exercise", category_jobs_path("Walk & exercise")%></span> | 
+  <span><%=link_to "Overnight stay", category_jobs_path("Overnight stay")%></span> | 
+  <span><%=link_to "Training", category_jobs_path("Training")%></span>
 </div>
 <%= render partial: 'jobs', locals: {jobs: @jobs} %>
