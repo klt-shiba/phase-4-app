@@ -3,7 +3,7 @@
     <div id="error_explanation">
       <ul>
         <% job.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+          <li style="color:red;"><%= error.full_message %></li>
         <% end %>
       </ul>
     </div>

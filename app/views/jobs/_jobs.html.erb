@@ -1,8 +1,8 @@
-<ol>
+
   <% jobs.each do | job |%>
     <li>
-      <div><%=link_to job.title, user_job_path(job.poster_id, job.id)%> - <%=job.price%></div>
-      <div><%=link_to job_poster(job).username.capitalize, user_path(job_poster(job).id)%>
+      <div><b><h3><%=link_to job.title, user_job_path(job.poster_id, job.id)%></b></h3>  
+      <h4>- <%=job_poster(job).username.capitalize%> is offering $<%=job.price%></h4></div>
     </li>
   <%end%>
-</ol>
+

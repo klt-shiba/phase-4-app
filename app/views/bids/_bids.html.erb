@@ -1,8 +1,8 @@
 <ol>
   <% @bids.each do | bid |%>
     <li>
-      <div><%=link_to bid.bid_amount, user_path(bid.bidder_id)%> - <%=bid.comment%> </div>
-      <div><%=link_to job_bidder(bid).username.capitalize, user_path(job_bidder(bid).id)%>
-      </li>
-    <%end%>
-    <ol>
+      <div><b><h3><%=link_to job_bidder(bid).username.capitalize, user_path(job_bidder(bid).id)%> bid $<%=bid.bid_amount%></b></h3><%=bid.comment%> </div>
+      <br>
+    </li>
+  <%end%>
+</ol>
