@@ -2,7 +2,7 @@
   <% jobs.each do | job |%>
     <li>
       <div><%=link_to job.title, user_job_path(job.poster_id, job.id)%> - <%=job.price%></div>
-      <div><%=link_to job_poster(job), user_path(job.poster_id)%>
+      <div><%=link_to job_poster(job).username.capitalize, user_path(job_poster(job).id)%>
     </li>
   <%end%>
 </ol>

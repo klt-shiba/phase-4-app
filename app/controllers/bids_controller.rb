@@ -8,7 +8,7 @@ class BidsController < ApplicationController
     @bid = Bid.new(job_params)
     @job = Job.find_by(id: params[:job_id])
     @user = User.find_by_id(session[:user_id])
-    @bidder = Bidder.create_or_find_bidder(@user)
+    @bidder = Poster.find_or_create_by(user_id: @user.id)
 
     @bid.job_id = @job.id
     @bid.bidder_id = @bidder.id

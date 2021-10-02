@@ -8,15 +8,18 @@ module ApplicationHelper
     @current_user ||= User.find_by_id(session[:user_id]) if !!session[:user_id]
   end
 
-  ## Helper method to return name of the poster from Job object
+  ## Helper method to return user object who posted job
   def job_poster(job)
-    @job_poster = User.find_by_id(job.poster_id)
-    @job_poster.username
+    @poster = Poster.find_by_id(job.poster_id)
+    @job_poster = User.find_by_id(@poster.user_id)
+    ## return User that matches user_id in Posters database
+    @job_poster
   end
 
-  ## Helper method to return name of the poster from Job object
+  ## Helper method to return user object from bidder object
   def job_bidder(bid)
-    @job_bidder = User.find_by_id(bid.bidder_id)
-    @job_bidder.username
+    @bidder = Bidder.find_by_id(bid.bidder_id)
+    @job_bidder = User.find_by_id(@bidder.user_id)
+    @job_bidder
   end
 end

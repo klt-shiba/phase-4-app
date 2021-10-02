@@ -1,4 +1,7 @@
-<%=link_to "View Job", user_job_path(@job.poster_id, @job.id)%>
 <h1>Bid on job</h1>
+<div>
+  <span><%=link_to "Dashboard", root_path%></span> |
+  <%=link_to "View Job", user_job_path(@job.poster_id, @job.id)%>
+</div>
+<hr>
 <%= render partial: 'form', locals: {bid: @bid} %>
-

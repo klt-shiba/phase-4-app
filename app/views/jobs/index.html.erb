@@ -1,11 +1,15 @@
 <h1>All jobs</h1>
-
 <div>
-  <h3>Filter jobs:</h3>
+  <span><%=link_to "Profile", user_path(current_user.id)%></span> | 
+  <span><%=link_to "Post a Job", new_user_job_path(current_user.id)%></span> |
+  <span><%=link_to "Dashboard", root_path%></span>
+</div>
+<hr>
+<div>
   <%= form_tag("/jobs", method: "get") do %>
-    <%= select_tag "category", options_from_collection_for_select(@jobs, "id", "category"), include_blank: true%>
-      <%= puts @jobs%>
-    <%= submit_tag "Filter" %>
+    <%= text_field_tag(:q) %>
+    <%= submit_tag "Search" %>
   <% end %>
+  <span><%=link_to "Clear search", jobs_path%></span>
 </div>
 <%= render partial: 'jobs', locals: {jobs: @jobs} %>

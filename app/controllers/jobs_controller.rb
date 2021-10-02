@@ -1,11 +1,16 @@
 class JobsController < ApplicationController
   def index
-    @jobs = if params[:user_id]
-              User.find(params[:user_id]).jobs
-            else
-              ## No filter applied
-              Job.is_category('Cell')
-            end
+    if params[:user_id]
+      @jobs = User.find(params[:user_id]).jobs
+    elsif params[:q]
+      ## If search param exists, pass search argument into Job object and invoke search class method
+      @jobs = Job.search(params[:q].downcase)
+      puts '---------------'
+      puts @jobs
+    else
+      ## No filter applied
+      @jobs = Job.all
+    end
   end
 
   def show
@@ -19,27 +24,23 @@ class JobsController < ApplicationController
   end
 
   def create
-    @job = Job.new(job_params)
     @user = User.find_by(id: params[:user_id])
-
-    puts 'jobs controller create'
-    puts @user.username
-    @poster = Poster.create_poster(@user)
-
+    @poster = Poster.find_or_create_by(user_id: @user.id)
+    @job = Job.new(job_params)
+    puts "-============-"
+    puts @poster.user_id
     @job.poster_id = @poster.id
 
     if @job.save
       redirect_to user_job_path(@job.poster_id, @job.id)
     else
-      @message = 'Your details are incorrect. Please try again.'
+      flash[:message] = @job.errors.full_messages
       render :new, notice: @message
     end
   end
 
   def popular
-    ## Bid is an array of values
-    @bids = Bid.most_popular
-    @jobs = Job.most_popular(@bids)
+    @jobs = Job.most_popular
     puts @jobs
   end
 
@@ -66,6 +67,6 @@ class JobsController < ApplicationController
   private
 
   def job_params
-    params.require(:job).permit(:title, :category, :location, :description, :price, :day, :time)
+    params.require(:job).permit(:title, :category, :description, :price, :day, :time, :poster_id)
   end
 end

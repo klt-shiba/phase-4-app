@@ -2,8 +2,8 @@
 <%= flash[:message]%>
 <%= bootstrap_form_for :user, url: '/login' do |f| %>
   <br>
-  Username: <%= f.text_field :username %>
-  Password: <%= f.password_field :password %>
+<%= f.text_field :username %>
+<%= f.password_field :password %>
   <%= f.submit "Log in" %>
 <% end %>
 <br>

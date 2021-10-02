@@ -1,14 +1,17 @@
 <br>
-<% if current_user.id == @job.poster_id %>
-  <%=link_to "Update job", edit_user_job_path(@job.poster_id, @job.id)%> |
-  <%=link_to "Back to profile", user_path(@job.poster_id)%>
-<%else%>
-  <%=link_to "Bid on job", new_job_bid_path(@job.id)%> |
-  <%=link_to "View poster", user_path(@job.poster_id)%> |
-  <%=link_to "View dashboard", root_path%>
-<%end%>
 <p> <%=@job.category%> </p>
 <h1><%=@job.title%></h1>
+<div>
+  <% if current_user.id == @job.poster_id %>
+    <%=link_to "Update job", edit_user_job_path(@job.poster_id, @job.id)%> |
+    <%=link_to "Back to profile", user_path(@job.poster_id)%>
+  <%else%>
+    <%=link_to "Bid on job", new_job_bid_path(@job.id)%> |
+    <%=link_to "View poster", user_path(@job.poster_id)%> |
+    <%=link_to "View dashboard", root_path%>
+  <%end%>
+</div>
+<hr>
 <p> <%=@job.description%> </p>
 <p> <%=@job.day%> - <%=@job.time%> </p>
 <hr>

@@ -1,5 +1,4 @@
 <%= bootstrap_form_for job, url: user_jobs_path do |f| %>
-  <div><b><%=@message%></b></div>
   <% if job.errors.any? %>
     <div id="error_explanation">
       <ul>
@@ -12,13 +11,11 @@
   <br>
   <div><%= f.text_field :title %></div>
   <br>
-  <div><%= f.select :category, options_for_select([["Select One", ""], "Cell", "Work", "Office", "Home", "Other"]), :class => 'genForm_dropBox' %></div>
+  <div><%= f.select :category, options_for_select([["Select One", ""], "Wash & groom", "Walk & exercise", "Overnight stay", "Training", "Other"]), :class => 'genForm_dropBox' %></div>
   <br>
   <div><%= f.text_area :description %></div>
   <br>
   <div><%= f.text_field :price %></div>
-  <br>
-  <div><%= f.select :location, options_for_select([["Select One", ""], "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]), :class => 'genForm_dropBox' %></div>
   <br>
   <div><%= f.select :day, options_for_select([["Select One", ""], "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]), :class => 'genForm_dropBox' %></div>
   <br>

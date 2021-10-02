@@ -1,11 +1,12 @@
 <h1>Welcome <%=@user.username.capitalize%>!</h1>
 <div>
 <span><%=link_to "Profile", user_path(@user.id)%></span> | 
-<span><%=link_to "Post a Job", new_user_job_path(@user.id)%></span> | 
+<span><%=link_to "Post a Job", new_user_job_path(@user.id)%></span> 
 </div>
 <hr>
+<h2>Recent jobs</h2>
+<span><%=link_to "View all jobs", jobs_path%></span> | 
+<span><%=link_to "Most popular", most_popular_path%></span> 
 <%= render partial: 'jobs/jobs', locals: {jobs: @jobs} %>
-<br>
-<nav><%=link_to "View all jobs", jobs_path%></nav>
 <br>
 <%=button_to "Logout", logout_path%>
