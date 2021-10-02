@@ -1,5 +1,7 @@
 <h1>Edit job</h1>
-
+<div>
+<span><%=link_to "Dashboard", root_path%></span> |
+<%= link_to "My profile", user_path(current_user)%>
+</div>
+<hr>
 <%= render partial: 'form', locals: {job: @job} %>
-
-<%= link_to "Back to profile", user_path(current_user)%>

@@ -1,20 +1,19 @@
 class JobsController < ApplicationController
   def index
-    if params[:user_id]
-      @jobs = User.find(params[:user_id]).jobs
-    elsif params[:q]
-      ## If search param exists, pass search argument into Job object and invoke search class method
-      @jobs = Job.search(params[:q].downcase)
-      puts '---------------'
-      puts @jobs
-    else
-      ## No filter applied
-      @jobs = Job.all
-    end
+    @jobs = if params[:user_id]
+              User.find(params[:user_id]).jobs
+            elsif params[:q]
+              ## If search param exists, pass search argument into Job object and invoke search class method
+              Job.search(params[:q].downcase)
+            else
+              ## No filter applied
+              Job.all
+            end
   end
 
   def show
-    @job = Job.find_by(id: params[:id])
+    ## Check and see if job id is valid otherwise redirect to homepage
+    @job = Job.find_by(id: params[:id]) || redirect_to(root_path)
     @bids = Bid.show_related_bids_only(@job)
   end
 
@@ -27,8 +26,6 @@ class JobsController < ApplicationController
     @user = User.find_by(id: params[:user_id])
     @poster = Poster.find_or_create_by(user_id: @user.id)
     @job = Job.new(job_params)
-    puts "-============-"
-    puts @poster.user_id
     @job.poster_id = @poster.id
 
     if @job.save
@@ -41,7 +38,6 @@ class JobsController < ApplicationController
 
   def popular
     @jobs = Job.most_popular
-    puts @jobs
   end
 
   def edit

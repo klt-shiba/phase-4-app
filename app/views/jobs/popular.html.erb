@@ -1,1 +1,7 @@
+<h1>Most popular</h1>
+<div>
+<span><%=link_to "Dashboard", root_path%></span> |
+<span><%=link_to "View all jobs", jobs_path%></span>
+</div>
+<hr>
 <%= render partial: 'jobs', locals: {jobs: @jobs} %>

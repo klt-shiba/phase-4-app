@@ -5,8 +5,7 @@
 </div>
 <hr>
 <h2>Recent jobs</h2>
-<span><%=link_to "View all jobs", jobs_path%></span> | 
-<span><%=link_to "Most popular", most_popular_path%></span> 
+<span><%=link_to "View all jobs", jobs_path%></span>
 <%= render partial: 'jobs/jobs', locals: {jobs: @jobs} %>
 <br>
 <%=button_to "Logout", logout_path%>

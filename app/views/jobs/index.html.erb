@@ -6,10 +6,13 @@
 </div>
 <hr>
 <div>
+  <h4>Search</h4>
   <%= form_tag("/jobs", method: "get") do %>
     <%= text_field_tag(:q) %>
     <%= submit_tag "Search" %>
   <% end %>
-  <span><%=link_to "Clear search", jobs_path%></span>
+  <br>
+  <span><%=link_to "Clear search", jobs_path%></span> | 
+  <span><%=link_to "Most popular", most_popular_jobs_path%></span>
 </div>
 <%= render partial: 'jobs', locals: {jobs: @jobs} %>

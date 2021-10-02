@@ -17,7 +17,6 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by(id: params[:id])
     @poster = Poster.find_by(user_id: params[:id]) ? Poster.find_by(user_id: params[:id]) : nil 
-  
   end
 
   def index

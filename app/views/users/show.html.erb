@@ -3,7 +3,10 @@
 <% if current_user.id == @user.id %>
   | <%=link_to "Update profile", edit_user_path(@user.id)%>
   | <%=link_to "Post a job", new_user_job_path(@user)%>
-  <hr>
+<%else%>
+<%end%>
+<hr>
+<% if current_user.id == @user.id %>
   <li>
     <div>
       <h3>Username</h3>
@@ -39,8 +42,7 @@
     <% if @poster%>
       <%= render partial: 'jobs/jobs', locals: {jobs: @poster.jobs}%>
     <% else%>
-      <%=link_to "Post a job", new_user_job_path(@user)%>
     <%end%>
   </div>
   <br>
-<%=button_to "Logout", logout_path%>
+  <%=button_to "Logout", logout_path%>

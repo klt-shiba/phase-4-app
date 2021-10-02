@@ -17,8 +17,9 @@ class Job < ActiveRecord::Base
   scope :most_recent, -> { order('created_at desc').limit(10) }
 
   ## Scope method to find most popular jobs based on number of bids
-  ##
+  ## Join with bid table using jobs id, order and group by number of duplicate job_id
   scope :most_popular, -> { left_joins(:bids).group('jobs.id').order('count(bids.job_id) desc').limit(10) }
+
 
   def self.search(params)
     ## Search database for titles that are similar to searched value
