@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def new
     @user = User.new
+
   end
 
   def create
@@ -25,9 +26,11 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find_by(id: params[:id])
+    @url = user_path
   end
 
   def update
+    @url = user_path
     @user = User.find_by(id: params[:id])
     if @user.update(user_params)
       redirect_to user_path(@user)
@@ -43,9 +46,4 @@ class UsersController < ApplicationController
     params.require(:user).permit(:username, :email, :password, :password_confirmation)
   end
 
-  def require_login
-    unless session.include? :user_id
-      redirect_to login_path
-    end
-  end
 end

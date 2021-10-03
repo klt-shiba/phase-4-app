@@ -21,9 +21,11 @@ class JobsController < ApplicationController
   def new
     @job = Job.new
     @user = User.find_by(id: params[:user_id])
+    @url = user_jobs_path
   end
 
   def create
+    @url = user_jobs_path
     @user = User.find_by(id: params[:user_id])
     @poster = Poster.find_or_create_by(user_id: @user.id)
     @job = Job.new(job_params)
@@ -47,9 +49,11 @@ class JobsController < ApplicationController
 
   def edit
     @job = Job.find_by(id: params[:id])
+    @url = user_job_path
   end
 
   def update
+    @url = user_job_path
     @user = User.find_by(id: params[:user_id])
     @job = Job.find_by(id: params[:id])
     @poster = Poster.find_or_create_by(user_id: @user.id)
