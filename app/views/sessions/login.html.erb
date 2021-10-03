@@ -1,11 +1,15 @@
 <h1>Log in </h1>
-<%= flash[:message]%>
+<div style="color:red;">
+  <%= flash[:message]%>
+  <%=flash[:danger]%>
+</div>
 <%= bootstrap_form_for :user, url: '/login' do |f| %>
   <br>
-<%= f.text_field :username %>
-<%= f.password_field :password %>
+  <div class="fields_with_errors"><%= f.text_field :username %></div>
+  <div class="fields_with_errors"><%= f.password_field :password %></div>
+  <br>
   <%= f.submit "Log in" %>
 <% end %>
 <br>
-<%=button_to "Login with Google", '/auth/google_oauth2'%>
-<%=link_to "Sign up", signup_path%>
+<span><%=button_to "Login with Google", '/auth/google_oauth2'%></span>
+<span><%=link_to "Sign up", signup_path%></span>

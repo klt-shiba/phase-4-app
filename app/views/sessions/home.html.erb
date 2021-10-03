@@ -1,4 +1,4 @@
-<h1>Welcome <%=@user.username.capitalize%>!</h1>
+<h1>Welcome to Pet Tasker, <%=@user.username.capitalize%>!</h1>
 <div>
 <span><%=link_to "Profile", user_path(@user.id)%></span> | 
 <span><%=link_to "Post a Job", new_user_job_path(@user.id)%></span> 

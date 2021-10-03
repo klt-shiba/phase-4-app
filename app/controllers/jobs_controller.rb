@@ -1,4 +1,5 @@
 class JobsController < ApplicationController
+
   def index
     @jobs = if params[:user_id]
               User.find(params[:user_id]).jobs
@@ -29,7 +30,7 @@ class JobsController < ApplicationController
     @job.poster_id = @poster.id
 
     if @job.save
-      redirect_to user_job_path(@job.poster_id, @job.id)
+      redirect_to user_job_path(@poster.user_id, @job.id)
     else
       flash[:message] = @job.errors.full_messages
       render :new, notice: @message
@@ -49,9 +50,12 @@ class JobsController < ApplicationController
   end
 
   def update
-    @job = Job.find_by(params[:id])
+    @user = User.find_by(id: params[:user_id])
+    @job = Job.find_by(id: params[:id])
+    @poster = Poster.find_or_create_by(user_id: @user.id)
+
     if @job.update(job_params)
-      redirect_to user_job_path(@job.poster_id, @job.id)
+      redirect_to user_job_path(@poster.user_id, @job.id)
     else
       @message = 'Your details are incorrect. Please try again.'
       render :edit, notice: @message

@@ -1,8 +1,8 @@
 <%=flash[:message]%>
 <%= bootstrap_form_for bid, url: job_bids_path do |f| %>
   <br>
-  <%= f.number_field :bid_amount %>
-  <%= f.text_area :comment %>
-    <br>
+  <div class="fields_with_errors"><%= f.number_field :bid_amount %> </div>
+  <div class="fields_with_errors"><%= f.text_area :comment %></div>
+  <br>
   <%= f.submit "Place bid" %>
 <% end %>

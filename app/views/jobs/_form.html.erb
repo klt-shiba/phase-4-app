@@ -1,4 +1,5 @@
-<%= bootstrap_form_for job, url: user_jobs_path do |f| %>
+<div class="fields_with_errors">
+<%= bootstrap_form_for job, url: user_job_path do |f| %>
   <% if job.errors.any? %>
     <div id="error_explanation">
       <ul>
@@ -9,17 +10,18 @@
     </div>
   <% end %>
   <br>
-  <div><%= f.text_field :title %></div>
+  <div class="fields_with_errors"><%= f.text_field :title %></div>
   <br>
-  <div><%= f.select :category, options_for_select([["Select One", ""], "Wash & groom", "Walk & exercise", "Overnight stay", "Training", "Other"]), :class => 'genForm_dropBox' %></div>
+  <div class="fields_with_errors"><%= f.select :category, options_for_select([["Select One", ""], "Wash & groom", "Walk & exercise", "Overnight stay", "Training", "Other"]), :class => 'genForm_dropBox' %></div>
   <br>
-  <div><%= f.text_area :description %></div>
+  <div class="fields_with_errors"><%= f.text_area :description %></div>
   <br>
-  <div><%= f.text_field :price %></div>
+  <div class="fields_with_errors"><%= f.text_field :price %></div>
   <br>
-  <div><%= f.select :day, options_for_select([["Select One", ""], "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]), :class => 'genForm_dropBox' %></div>
+  <div class="fields_with_errors"><%= f.select :day, options_for_select([["Select One", ""], "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]), :class => 'genForm_dropBox' %></div>
   <br>
-  <div><%= f.select :time, options_for_select([["Select One", ""], "Morning", "Afternoon", "Evening"]), :class => 'genForm_dropBox' %></div>
+  <div class="fields_with_errors"><%= f.select :time, options_for_select([["Select One", ""], "Morning", "Afternoon", "Evening"]), :class => 'genForm_dropBox' %></div>
   <br>
   <%= f.submit "Post job" %>
 <% end %>
+</div>

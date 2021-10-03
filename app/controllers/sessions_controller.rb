@@ -17,8 +17,8 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to root_path
     else
-      @message = 'Your email address or password is incorrect. Please try again.'
-      render :login, notice: [@message, @user]
+      flash[:message] = 'Your email address or password is incorrect. Please try again.'
+      render :login, notice: @user
     end
   end
 

@@ -44,6 +44,8 @@ class UsersController < ApplicationController
   end
 
   def require_login
-    return head(:forbidden) unless session.include? :user_id
+    unless session.include? :user_id
+      redirect_to login_path
+    end
   end
 end
