@@ -25,12 +25,17 @@ class JobsController < ApplicationController
   end
 
   def create
+    ## Initialise variables below for user, poster by finding or creating, creating new Job and url helper which we pass into our partial so we can use same partial for edit and new
     @url = user_jobs_path
     @user = User.find_by(id: params[:user_id])
     @poster = Poster.find_or_create_by(user_id: @user.id)
     @job = Job.new(job_params)
+
+    ## Set Job Poster_id to Poster.id
+    ## Job belongs to Poster
     @job.poster_id = @poster.id
 
+    ## If Job saves, redirect to users/id/job
     if @job.save
       redirect_to user_job_path(@poster.user_id, @job.id)
     else
@@ -40,24 +45,30 @@ class JobsController < ApplicationController
   end
 
   def popular
+    ## Scope method for most popular Jobs. This is based on how many bids so probably not really "most popular"
     @jobs = Job.most_popular
   end
 
   def category
+    ## Scope method to find all items in table that match category name
+    ## category param is passed into scope method when this customer Jobs controller method is called
     @jobs = Job.is_category(params[:category])
   end
 
   def edit
+    ## Initialise variable for URL helper which we pass to forms partial
     @job = Job.find_by(id: params[:id])
     @url = user_job_path
   end
 
   def update
+    ## Initialise variables for user, job and poster
     @url = user_job_path
     @user = User.find_by(id: params[:user_id])
     @job = Job.find_by(id: params[:id])
-    @poster = Poster.find_or_create_by(user_id: @user.id)
+    @poster = Poster.find_by(user_id: @user.id)
 
+    ## If job updates redirect to user/id/jobs/id to view job
     if @job.update(job_params)
       redirect_to user_job_path(@poster.user_id, @job.id)
     else
@@ -66,11 +77,11 @@ class JobsController < ApplicationController
     end
   end
 
-  def destroy
-    @job = Job.find_by(params[:id])
-    @job.delete
-    redirect_to user_path
-  end
+  # def destroy
+  #   @job = Job.find_by(params[:id])
+  #   @job.delete
+  #   redirect_to user_path
+  # end
 
   private
 

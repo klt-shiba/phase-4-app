@@ -5,12 +5,19 @@ Rails.application.routes.draw do
   ## Dynamic omniauth provider eg google, facebook, github.
   ## Coming back route
   get '/auth/:provider/callback', to: 'sessions#omniauth'
+
+
+  ## Nested routes for Jobs
+  ## Include some custom routes that go to customer controller methods, which in turn invoke scope methods
+  ## Added dynamic category param which then passes the category type into the Job.is_category scope method
   resources :jobs do
     collection do
       get 'most_popular', to: 'jobs#popular'
       get ':category', to: 'jobs#category', as: 'category'
     end
   end
+
+  
   resources :users do
     resources :jobs
   end

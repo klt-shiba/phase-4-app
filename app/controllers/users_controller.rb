@@ -5,7 +5,11 @@ class UsersController < ApplicationController
   end
 
   def create
+
+    ## Initialise user by creating new user and passing in user_params method
     @user = User.new(user_params)
+    
+    ## If user saves, set session id to user id and direct customer to home page
     if @user.save
       session[:user_id] = @user.id
       redirect_to root_path, notice: @user
@@ -16,6 +20,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    ## Initilise variables for user and poster so we can show them on profile page
     @user = User.find_by(id: params[:id])
     @poster = Poster.find_by(user_id: params[:id]) ? Poster.find_by(user_id: params[:id]) : nil 
   end
