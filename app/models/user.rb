@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-  has_many :bidders
-  has_many :posters
+  has_one :bidder
+  has_one :poster
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i.freeze
 

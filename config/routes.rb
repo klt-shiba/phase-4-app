@@ -16,13 +16,17 @@ Rails.application.routes.draw do
       get ':category', to: 'jobs#category', as: 'category'
     end
   end
-
   
   resources :users do
     resources :jobs
   end
+
   resources :jobs do
     resources :bids
+  end
+
+  resources :posters do
+    resources :ratings
   end
 
   resources :jobs, :sessions

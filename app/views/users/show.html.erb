@@ -1,5 +1,6 @@
 <h1><%=@user.username.pluralize.capitalize%> profile</h1>
-<%=link_to "Dashboard", root_path%>
+<%=link_to "Dashboard", root_path%> |
+<%=link_to "Rate Poster", new_poster_rating_path(@user.poster)%>
 <% if current_user.id == @user.id %>
   | <%=link_to "Update profile", edit_user_path(@user.id)%>
   | <%=link_to "Post a job", new_user_job_path(@user)%>

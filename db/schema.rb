@@ -10,55 +10,67 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 12) do
-  create_table 'bidders', force: :cascade do |t|
-    t.integer 'user_id'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
+ActiveRecord::Schema.define(version: 13) do
+
+  create_table "bidders", force: :cascade do |t|
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table 'bids', force: :cascade do |t|
-    t.integer 'bid_amount'
-    t.text 'comment'
-    t.bigint 'bidder_id'
-    t.bigint 'job_id'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['bidder_id'], name: 'index_bids_on_bidder_id'
-    t.index ['job_id'], name: 'index_bids_on_job_id'
+  create_table "bids", force: :cascade do |t|
+    t.integer "bid_amount"
+    t.text "comment"
+    t.bigint "bidder_id"
+    t.bigint "job_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["bidder_id"], name: "index_bids_on_bidder_id"
+    t.index ["job_id"], name: "index_bids_on_job_id"
   end
 
-  create_table 'jobs', force: :cascade do |t|
-    t.string 'title'
-    t.string 'category'
-    t.text 'description'
-    t.integer 'price'
-    t.string 'day'
-    t.string 'time'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.integer 'poster_id'
+  create_table "jobs", force: :cascade do |t|
+    t.string "title"
+    t.string "category"
+    t.text "description"
+    t.integer "price"
+    t.string "day"
+    t.string "time"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "poster_id"
   end
 
-  create_table 'posters', force: :cascade do |t|
-    t.integer 'user_id'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
+  create_table "posters", force: :cascade do |t|
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table 'sessions', force: :cascade do |t|
-    t.string 'username'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
+  create_table "ratings", force: :cascade do |t|
+    t.integer "rating"
+    t.bigint "poster_id"
+    t.bigint "bidder_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["bidder_id"], name: "index_ratings_on_bidder_id"
+    t.index ["poster_id"], name: "index_ratings_on_poster_id"
   end
 
-  create_table 'users', force: :cascade do |t|
-    t.string 'username'
-    t.string 'email'
-    t.string 'password_digest'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.string 'uid'
-    t.string 'provider'
+  create_table "sessions", force: :cascade do |t|
+    t.string "username"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "uid"
+    t.string "provider"
+  end
+
 end

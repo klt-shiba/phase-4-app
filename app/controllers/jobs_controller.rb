@@ -26,9 +26,10 @@ class JobsController < ApplicationController
 
   def create
     ## Initialise variables below for user, poster by finding or creating, creating new Job and url helper which we pass into our partial so we can use same partial for edit and new
-    @url = user_jobs_path
-    @user = User.find_by(id: params[:user_id])
-    @poster = Poster.find_or_create_by(user_id: @user.id)
+    # @url = user_jobs_path
+
+    # @user = User.find_by(id: params[:user_id])
+    @poster = Poster.find_or_create_by(user_id: current_user.id)
     @job = Job.new(job_params)
 
     ## Set Job Poster_id to Poster.id
@@ -62,11 +63,11 @@ class JobsController < ApplicationController
   end
 
   def update
-    ## Initialise variables for user, job and poster
-    @url = user_job_path
-    @user = User.find_by(id: params[:user_id])
+
+
+    # @user = User.find_by(id: params[:user_id])
     @job = Job.find_by(id: params[:id])
-    @poster = Poster.find_by(user_id: @user.id)
+    @poster = Poster.find_by(user_id: current_user.id)
 
     ## If job updates redirect to user/id/jobs/id to view job
     if @job.update(job_params)

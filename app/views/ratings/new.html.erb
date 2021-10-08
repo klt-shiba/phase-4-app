@@ -1,0 +1,15 @@
+<h1> Rate user</h1>
+<% if @rating.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% @rating.errors.each do |error| %>
+          <li style="color:red;"><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<%= form_for @rating, url: poster_ratings_path(@poster) do |f| %>
+
+<div><%= f.number_field :rating %></div>
+  <%= f.submit "Rate Poster" %>
+<%end%>
